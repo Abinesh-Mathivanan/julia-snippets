@@ -1,0 +1,686 @@
+{
+    "Julia Function": {
+        "prefix": "jl-func",
+        "body": [
+            "function ${1:function_name}(${2:arguments})",
+            "\t${3:# Function body}",
+            "end"
+        ],
+        "description": "Create a Julia function"
+    },
+    "Julia Struct": {
+        "prefix": "jl-struct",
+        "body": [
+            "struct ${1:StructName}",
+            "\t${2:field1}::${3:Type1}",
+            "\t${4:field2}::${5:Type2}",
+            "\t${6:# Add more fields if needed}",
+            "end"
+        ],
+        "description": "Define a Julia struct"
+    },
+    "Julia Micro": {
+        "prefix": "jl-micro",
+        "body": [
+            "\\mu"
+        ],
+        "description": "Inserts the micro symbol (μ)"
+    },
+    "Julia Macro": {
+        "prefix": "jl-macro",
+        "body": [
+            "\\Macro"
+        ],
+        "description": "Inserts the macro symbol (Μ)"
+    },
+    "Julia Max of List": {
+        "prefix": "jl-max",
+        "body": [
+            "maximum(${1:list})"
+        ],
+        "description": "Returns the maximum value of a list"
+    },
+    "Julia Min of List": {
+        "prefix": "jl-min",
+        "body": [
+            "minimum(${1:list})"
+        ],
+        "description": "Returns the minimum value of a list"
+    },
+    "Julia Integer to Binary": {
+        "prefix": "jl-bin",
+        "body": [
+            "string(${1:number}, base=2)"
+        ],
+        "description": "Converts an integer to binary"
+    },
+    "Julia Factors of Number": {
+        "prefix": "jl-factors",
+        "body": [
+            "function factors(n::Int)",
+            "\tresult = []",
+            "\tfor i in 1:n",
+            "\t\tif n % i == 0",
+            "\t\t\tpush!(result, i)",
+            "\t\tend",
+            "\tend",
+            "\treturn result",
+            "end",
+            "",
+            "# Usage: factors(${1:number})"
+        ],
+        "description": "Finds factors of a number"
+    },
+    "Julia Prime Factors of Number": {
+        "prefix": "jl-primefactors",
+        "body": [
+            "function prime_factors(n::Int)",
+            "\tresult = []",
+            "\ti = 2",
+            "\twhile n > 1",
+            "\t\twhile n % i == 0",
+            "\t\t\tpush!(result, i)",
+            "\t\t\t(n /= i)",
+            "\t\tend",
+            "\t\t(i += 1)",
+            "\tend",
+            "\treturn result",
+            "end",
+            "",
+            "# Usage: prime_factors(${1:number})"
+        ],
+        "description": "Finds prime factors of a number"
+    },
+    "Julia Prime Numbers Between n and m": {
+        "prefix": "jl-primenumbers",
+        "body": [
+            "function isprime(n::Int)",
+            "\tif n <= 1",
+            "\t\treturn false",
+            "\tend",
+            "\tif n == 2",
+            "\t\treturn true",
+            "\tend",
+            "\tfor i in 2:isqrt(n)",
+            "\t\tif n % i == 0",
+            "\t\t\treturn false",
+            "\t\tend",
+            "\tend",
+            "\treturn true",
+            "end",
+            "",
+            "function prime_numbers(n::Int, m::Int)",
+            "\tresult = Int[]",
+            "\tfor num in n:m",
+            "\t\tif isprime(num)",
+            "\t\t\tpush!(result, num)",
+            "\t\tend",
+            "\tend",
+            "\treturn result",
+            "end",
+            "",
+            "# Usage: prime_numbers(n, m)"
+        ],
+        "description": "Finds prime numbers between two given numbers n and m"
+    },
+    "Julia Binary Search": {
+        "prefix": "jl-binsearch",
+        "body": [
+            "function binary_search(arr::Vector{T}, target::T) where T",
+            "\tleft = 1",
+            "\tright = length(arr)",
+            "\twhile left <= right",
+            "\t\tmid = left + (right - left) ÷ 2",
+            "\t\tif arr[mid] == target",
+            "\t\t\treturn mid",
+            "\t\telseif arr[mid] < target",
+            "\t\t\tleft = mid + 1",
+            "\t\telse",
+            "\t\t\tright = mid - 1",
+            "\t\tend",
+            "\tend",
+            "\treturn -1  # Element not found",
+            "end",
+            "",
+            "# Usage: binary_search(arr, target)"
+        ],
+        "description": "Performs binary search on a sorted array"
+    },
+    "Julia Linear Search": {
+        "prefix": "jl-linearsearch",
+        "body": [
+            "function linear_search(arr::Vector{T}, target::T) where T",
+            "\tfor (i, val) in enumerate(arr)",
+            "\t\tif val == target",
+            "\t\t\treturn i",
+            "\t\tend",
+            "\tend",
+            "\treturn -1  # Element not found",
+            "end",
+            "",
+            "# Usage: linear_search(arr, target)"
+        ],
+        "description": "Performs linear search on an array"
+    },
+    "Julia Exponential Search": {
+        "prefix": "jl-expsearch",
+        "body": [
+            "function binary_search(arr::Vector{T}, target::T) where T",
+            "\tleft = 1",
+            "\tright = length(arr)",
+            "\twhile left <= right",
+            "\t\tmid = left + (right - left) ÷ 2",
+            "\t\tif arr[mid] == target",
+            "\t\t\treturn mid",
+            "\t\telseif arr[mid] < target",
+            "\t\t\tleft = mid + 1",
+            "\t\telse",
+            "\t\t\tright = mid - 1",
+            "\t\tend",
+            "\tend",
+            "\treturn -1  # Element not found",
+            "end",
+            "",
+            "function exponential_search(arr::Vector{T}, target::T) where T",
+            "\tif arr[1] == target",
+            "\t\treturn 1",
+            "\tend",
+            "\tsize = length(arr)",
+            "\ti = 1",
+            "\twhile i < size && arr[i] <= target",
+            "\t\ti *= 2",
+            "\tend",
+            "\treturn binary_search(arr, i ÷ 2, min(i, size), target)",
+            "end",
+            "",
+            "# Usage: exponential_search(arr, target)"
+        ],
+        "description": "Performs exponential search on a sorted array"
+    },
+    "Julia Jump Search": {
+        "prefix": "jl-jumpsearch",
+        "body": [
+            "function jump_search(arr::Vector{T}, target::T) where T",
+            "\tblock_size = isqrt(length(arr))",
+            "\tblock_start = 1",
+            "\tblock_end = 0  # Initialize block_end outside the loop",
+            "\twhile block_start <= length(arr)",
+            "\t\tblock_end = min(block_start + block_size - 1, length(arr))",
+            "\t\tif arr[block_end] >= target",
+            "\t\t\tbreak",
+            "\t\tend",
+            "\t\tblock_start += block_size",
+            "\tend",
+            "\tfor i in block_start:min(block_end, length(arr))",
+            "\t\tif arr[i] == target",
+            "\t\t\treturn i",
+            "\t\tend",
+            "\tend",
+            "\treturn -1  # Element not found",
+            "end",
+            "",
+            "# Usage: jump_search(arr, target)"
+        ],
+        "description": "Performs jump search on a sorted array"
+    },
+    "Julia QuickSort": {
+        "prefix": "jl-quicksort",
+        "body": [
+            "function quicksort(arr::Vector{T}) where T",
+            "\tif length(arr) <= 1",
+            "\t\treturn arr",
+            "\tend",
+            "\tpivot = arr[rand(1:length(arr))]",
+            "\tless = [x for x in arr if x < pivot]",
+            "\tequal = [x for x in arr if x == pivot]",
+            "\tgreater = [x for x in arr if x > pivot]",
+            "\treturn vcat(quicksort(less), equal, quicksort(greater))",
+            "end",
+            "",
+            "# Usage: quicksort(arr)"
+        ],
+        "description": "Performs QuickSort on an array"
+    },
+    "Julia Insertion Sort": {
+        "prefix": "jl-insertsort",
+        "body": [
+            "function insertion_sort(arr::Vector{T}) where T",
+            "\tfor i in 2:length(arr)",
+            "\t\tkey = arr[i]",
+            "\t\tj = i - 1",
+            "\t\twhile j >= 1 && arr[j] > key",
+            "\t\t\tarr[j+1] = arr[j]",
+            "\t\t\tj -= 1",
+            "\t\tend",
+            "\t\tarr[j+1] = key",
+            "\tend",
+            "\treturn arr",
+            "end",
+            "",
+            "# Usage: insertion_sort(arr)"
+        ],
+        "description": "Performs Insertion Sort on an array"
+    },
+    "Julia Heap Sort": {
+        "prefix": "jl-heapsort",
+        "body": [
+            "function heap_sort(arr::Vector{T}) where T",
+            "\tn = length(arr)",
+            "\tfor i in (n ÷ 2):-1:1",
+            "\t\theapify(arr, i, n)",
+            "\tend",
+            "\tfor i in n:-1:2",
+            "\t\tarr[1], arr[i] = arr[i], arr[1]",
+            "\t\theapify(arr, 1, i - 1)",
+            "\tend",
+            "\treturn arr",
+            "end",
+            "",
+            "function heapify(arr::Vector{T}, root::Int, end_idx::Int) where T",
+            "\tleft = 2 * root",
+            "\tright = 2 * root + 1",
+            "\tmax_idx = root",
+            "\tif left ≤ end_idx && arr[left] > arr[max_idx]",
+            "\t\tmax_idx = left",
+            "\tend",
+            "\tif right ≤ end_idx && arr[right] > arr[max_idx]",
+            "\t\tmax_idx = right",
+            "\tend",
+            "\tif max_idx ≠ root",
+            "\t\tarr[root], arr[max_idx] = arr[max_idx], arr[root]",
+            "\t\theapify(arr, max_idx, end_idx)",
+            "\tend",
+            "end",
+            "",
+            "# Usage: heap_sort(arr)"
+        ],
+        "description": "Performs Heap Sort on an array"
+    },
+    "Julia Radix Sort": {
+        "prefix": "jl-radixsort",
+        "body": [
+            "function radix_sort(arr::Vector{Int})",
+            "\tmax_value = maximum(arr)",
+            "\tdigits = 1",
+            "\twhile max_value ÷ digits > 0",
+            "\t\tcounting_sort(arr, digits)",
+            "\t\tdigits *= 10",
+            "\tend",
+            "end",
+            "",
+            "function counting_sort(arr::Vector{Int}, digit::Int)",
+            "\toutput = fill(0, length(arr))",
+            "\tcount = fill(0, 10)",
+            "\tfor num in arr",
+            "\t\tindex = (num ÷ digit) % 10",
+            "\t\tcount[index + 1] += 1",
+            "\tend",
+            "\tfor i in 2:10",
+            "\t\tcount[i] += count[i - 1]",
+            "\tend",
+            "\tfor i in reverse(1:length(arr))",
+            "\t\tindex = (arr[i] ÷ digit) % 10",
+            "\t\toutput[count[index + 1]] = arr[i]",
+            "\t\tcount[index + 1] -= 1",
+            "\tend",
+            "\tarr .= output",
+            "end",
+            "",
+            "# Usage: radix_sort(arr)"
+        ],
+        "description": "Performs Radix Sort on an array"
+    },
+    "Julia Reverse Integer": {
+        "prefix": "jl-revint",
+        "body": [
+            "function reverse_integer(n::Int)",
+            "\treturn parse(Int, reverse(string(n)))",
+            "end",
+            "",
+            "# Usage: reverse_integer(n)"
+        ],
+        "description": "Reverses an integer"
+    },
+    "Julia Sieve of Eratosthenes": {
+        "prefix": "jl-sieveoferatosthenes",
+        "body": [
+            "function sieve_of_eratosthenes(n::Int)",
+            "\tprime = trues(n)",
+            "\tprime[1] = false",
+            "\tfor p in 2:isqrt(n)",
+            "\t\tif prime[p]",
+            "\t\t\tfor i in p^2:p:n",
+            "\t\t\t\tprime[i] = false",
+            "\t\t\tend",
+            "\t\tend",
+            "\tend",
+            "\treturn filter(x -> prime[x], 1:n)",
+            "end",
+            "",
+            "# Usage: sieve_of_eratosthenes(n)"
+        ],
+        "description": "Returns the list of primes using Sieve of Eratosthenes algorithm"
+    },
+    "Julia Sieve of Atkin": {
+        "prefix": "jl-sieveofatkin",
+        "body": [
+            "function sieve_of_atkin(limit::Int)",
+            "\tis_prime = Dict{Int, Bool}()",
+            "\t# Handle special cases: 2 and 3 are prime",
+            "\tis_prime[2] = true",
+            "\tis_prime[3] = true",
+            "\tfor x in 1:limit",
+            "\t\tfor y in 1:limit",
+            "\t\t\tn = (4 * x^2) + (y^2)",
+            "\t\t\tif n ≤ limit && (n % 12 == 1 || n % 12 == 5)",
+            "\t\t\t\tis_prime[n] = !haskey(is_prime, n) || is_prime[n]",
+            "\t\t\tend",
+            "\t\t\tn = (3 * x^2) + (y^2)",
+            "\t\t\tif n ≤ limit && (n % 12 == 7)",
+            "\t\t\t\tis_prime[n] = !haskey(is_prime, n) || is_prime[n]",
+            "\t\t\tend",
+            "\t\t\tn = (3 * x^2) - (y^2)",
+            "\t\t\tif x > y && n ≤ limit && (n % 12 == 11)",
+            "\t\t\t\tis_prime[n] = !haskey(is_prime, n) || is_prime[n]",
+            "\t\t\tend",
+            "\t\tend",
+            "\tend",
+            "\tfor n in 5:isqrt(limit)",
+            "\t\tif haskey(is_prime, n) && is_prime[n]",
+            "\t\t\tfor k in (n^2):n:limit",
+            "\t\t\t\tis_prime[k] = false",
+            "\t\t\tend",
+            "\t\tend",
+            "\tend",
+            "\treturn filter(x -> haskey(is_prime, x) && is_prime[x], 2:limit)",
+            "end",
+            "",
+            "# Usage: sieve_of_atkin(limit)"
+        ],
+        "description": "IReturns the list of primes using the Sieve of Atkin algorithm"
+    },
+    "Julia Insert Into Array": {
+        "prefix": "jl-insertarr",
+        "body": [
+            "# Insert an element at a specific index",
+            "insert!(arr, index, value)"
+        ],
+        "description": "Inserts an element into an array at a specific index"
+    },
+    "Julia Replace Element": {
+        "prefix": "jl-insertind",
+        "body": [
+            "# Replace an element at a specific index",
+            "arr[index] = new_value"
+        ],
+        "description": "Replaces an element in an array at a specific index"
+    },
+    "Julia Delete Element": {
+        "prefix": "jl-delele",
+        "body": [
+            "# Delete an element at a specific index",
+            "deleteat!(arr, index)"
+        ],
+        "description": "Deletes an element from an array at a specific index"
+    },
+    "Julia Append Arrays": {
+        "prefix": "jl-appendarr",
+        "body": [
+            "# Append one array to another",
+            "append!(arr1, arr2)"
+        ],
+        "description": "Appends one array to another in-place"
+    },
+    "Julia Search Element in Array": {
+        "prefix": "jl-searcharr",
+        "body": [
+            "function search_element(arr::Vector{T}, target::T) where T",
+            "\tfor (i, val) in enumerate(arr)",
+            "\t\tif val == target",
+            "\t\t\treturn i",
+            "\t\tend",
+            "\tend",
+            "\treturn -1  # Element not found",
+            "end",
+            "",
+            "# Usage: search_element(arr, target)"
+        ],
+        "description": "Searches for an element in an array and returns its index if found"
+    },
+    "Julia Find First Character Index": {
+        "prefix": "jl-charindex",
+        "body": [
+            "s1 = \"The quick brown fox jumps over the lazy dog\"",
+            "i = findfirst(isequal('${1:char}'), s1)",
+            "println(i)  # Output: ${2:index}"
+        ],
+        "description": "Finds the index of the first occurrence of a character in a string"
+    },
+    "Julia Find First Substring Range": {
+        "prefix": "jl-findsubstring",
+        "body": [
+            "r = findfirst(\"${1:substring}\", s1)",
+            "println(r)  # Output: ${2:range}"
+        ],
+        "description": "Finds the range of the first occurrence of a substring in a string"
+    },
+    "Julia Replace Substring": {
+        "prefix": "jl-replacesubstr",
+        "body": [
+            "r = replace(s1, \"${1:old_substring}\" => \"${2:new_substring}\")",
+            "show(r); println()  # Output: ${3:replaced_string}"
+        ],
+        "description": "Replaces a substring in a string with another substring"
+    },
+    "Julia Dict Initialization": {
+        "prefix": "jl-dict",
+        "body": [
+            "# dicts can be initialised directly:",
+            "a1 = Dict(1 => \"one\", 2 => \"two\")",
+            "printsum(a1)"
+        ],
+        "description": "Initializes a dictionary directly"
+    },
+    "Julia Add Element to Dictionary": {
+        "prefix": "jl-dictadd",
+        "body": [
+            "# then added to:",
+            "a1[3] = \"three\"",
+            "printsum(a1)",
+            "# (note dicts cannot be assumed to keep their original order)"
+        ],
+        "description": "Adds an element to a dictionary"
+    },
+    "Julia Explicitly Typed Dict Initialization": {
+        "prefix": "jl-explidict",
+        "body": [
+            "# dicts may also be created with the type explicitly set",
+            "a2 = Dict{Int64, AbstractString}()",
+            "a2[0] = \"zero\"",
+            "printsum(a2)"
+        ],
+        "description": "Initializes a dictionary with the type explicitly set"
+    },
+    "Julia Dict Comprehension Initialization": {
+        "prefix": "jl-dictcompinit",
+        "body": [
+            "# dicts, like arrays, may also be created from comprehensions",
+            "using Printf",
+            "a3 = Dict([i => @sprintf(\"%d\", i) for i = 1:10])",
+            "printsum(a3)"
+        ],
+        "description": "Initializes a dictionary using a comprehension"
+    },
+    "Julia Get Dictionary Values": {
+        "prefix": "jl-getdictval",
+        "body": [
+            "# similar to keys, values get iterators over the dict's values:",
+            "printsum(values(a1))",
+            "# use collect to get an array:",
+            "printsum(collect(values(a1)))"
+        ],
+        "description": "Gets the values from a dictionary"
+    },
+    "Julia Check Power of 2": {
+        "prefix": "jl-powof2",
+        "body": [
+            "function is_power_of_two(n::Int)",
+            "    return n > 0 && (n & (n - 1)) == 0",
+            "end"
+        ],
+        "description": "Checks if a number is a power of 2 using bitmasking"
+    },
+    "Julia Count Number of 1 Bits": {
+        "prefix": "jl-count1bits",
+        "body": [
+            "function count_ones(n::Int)",
+            "    count = 0",
+            "    while n > 0",
+            "        n &= n - 1",
+            "        count += 1",
+            "    end",
+            "    return count",
+            "end"
+        ],
+        "description": "Counts the number of 1 bits in an integer using bitmasking"
+    },
+    "Julia Count Number of 0 Bits": {
+        "prefix": "jl-count0bits",
+        "body": [
+            "function count_zeros(n::Int)",
+            "    return count_ones(~n)",
+            "end"
+        ],
+        "description": "Counts the number of 0 bits in an integer using bitmasking"
+    },
+    "Julia Check Odd or Even": {
+        "prefix": "jl-checkoddeven",
+        "body": [
+            "function is_odd(n::Int)",
+            "    return (n & 1) == 1",
+            "end",
+            "",
+            "function is_even(n::Int)",
+            "    return (n & 1) == 0",
+            "end"
+        ],
+        "description": "Checks if a number is odd or even using bitmasking"
+    },
+    "Julia Turn Off nth Bit": {
+        "prefix": "jl-turnoffnthbit",
+        "body": [
+            "function turn_off_nth_bit(n::Int, k::Int)",
+            "    return n & (~(1 << (k - 1)))",
+            "end"
+        ],
+        "description": "Turns off the nth bit of a number using bitmasking"
+    },
+    "Julia Turn On nth Bit": {
+        "prefix": "jl-turnonnthbit",
+        "body": [
+            "function turn_on_nth_bit(n::Int, k::Int)",
+            "    return n | (1 << (k - 1))",
+            "end"
+        ],
+        "description": "Turns on the nth bit of a number using bitmasking"
+    },
+    "Julia Line Plot": {
+        "prefix": "jl-lineplot",
+        "body": [
+            "#use plots package from Julia",
+            "x = 1:10",
+            "y = rand(10)",
+            "plot(x, y, xlabel=\"X-axis\", ylabel=\"Y-axis\", title=\"Line Plot\")"
+        ],
+        "description": "Creates a line plot"
+    },
+    "Julia Scatter Plot": {
+        "prefix": "jl-scatterplot",
+        "body": [
+            "scatter(x, y, xlabel=\"X-axis\", ylabel=\"Y-axis\", title=\"Scatter Plot\")"
+        ],
+        "description": "Creates a scatter plot"
+    },
+    "Julia Bar Plot": {
+        "prefix": "jl-barplot",
+        "body": [
+            "categories = [\"A\", \"B\", \"C\", \"D\"]",
+            "values = [10, 20, 15, 25]",
+            "bar(categories, values, xlabel=\"Categories\", ylabel=\"Values\", title=\"Bar Plot\")"
+        ],
+        "description": "Creates a bar plot"
+    },
+    "Julia Histogram": {
+        "prefix": "jl-histogram",
+        "body": [
+            "data = randn(1000)",
+            "histogram(data, xlabel=\"Value\", ylabel=\"Frequency\", title=\"Histogram\")"
+        ],
+        "description": "Creates a histogram"
+    },
+    "Julia Pie Chart": {
+        "prefix": "jl-piechart",
+        "body": [
+            "sizes = [20, 30, 15, 35]",
+            "labels = [\"Category 1\", \"Category 2\", \"Category 3\", \"Category 4\"]",
+            "pie(sizes, labels, title=\"Pie Chart\")"
+        ],
+        "description": "Creates a pie chart"
+    },
+    "Julia Box Plot": {
+        "prefix": "jl-boxplot",
+        "body": [
+            "boxplot([\"Group 1\", \"Group 2\"], [randn(100), randn(100)], xlabel=\"Groups\", ylabel=\"Values\", title=\"Box Plot\")"
+        ],
+        "description": "Creates a box plot"
+    },
+    "Julia Heatmap": {
+        "prefix": "jl-heatmap",
+        "body": [
+            "heatmap(rand(10, 10), xlabel=\"X-axis\", ylabel=\"Y-axis\", title=\"Heatmap\")"
+        ],
+        "description": "Creates a heatmap"
+    },
+    "Julia Contour Plot": {
+        "prefix": "jl-contourplot",
+        "body": [
+            "contour(rand(10, 10), xlabel=\"X-axis\", ylabel=\"Y-axis\", title=\"Contour Plot\")"
+        ],
+        "description": "Creates a contour plot"
+    },
+    "Julia Surface Plot": {
+        "prefix": "jl-surfaceplot",
+        "body": [
+            "surface(rand(10, 10), xlabel=\"X-axis\", ylabel=\"Y-axis\", zlabel=\"Z-axis\", title=\"Surface Plot\")"
+        ],
+        "description": "Creates a surface plot"
+    },
+    "Julia 3D Scatter Plot": {
+        "prefix": "jl-3dscatterplot",
+        "body": [
+            "x3d = rand(100)",
+            "y3d = rand(100)",
+            "z3d = rand(100)",
+            "scatter3d(x3d, y3d, z3d, xlabel=\"X-axis\", ylabel=\"Y-axis\", zlabel=\"Z-axis\", title=\"3D Scatter Plot\")"
+        ],
+        "description": "Creates a 3D scatter plot"
+    },
+    "Julia Error Bars": {
+        "prefix": "jl-errorbars",
+        "body": [
+            "xerr = 1:10",
+            "yerr = rand(10)",
+            "yerr_upper = yerr .+ 0.1",
+            "yerr_lower = yerr .- 0.1",
+            "errorbar(xerr, yerr, yerr_upper, yerr_lower, xlabel=\"X-axis\", ylabel=\"Y-axis\", title=\"Error Bars\")"
+        ],
+        "description": "Creates a plot with error bars"
+    },
+    "Julia Density Plot": {
+        "prefix": "jl-densityplot",
+        "body": [
+            "density(randn(100), xlabel=\"Value\", ylabel=\"Density\", title=\"Density Plot\")"
+        ],
+        "description": "Creates a density plot"
+    }
+}
