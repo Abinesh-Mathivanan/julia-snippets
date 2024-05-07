@@ -1,0 +1,33 @@
+{
+  "name": "julia-snippets",
+  "displayName": "Julia Snippets",
+  "description": "Code snippets for Julia 1.0+",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/Abinesh-Mathivanan/julia-snippets"
+  },
+  "icon": "julia.png",
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "julia",
+        "path": "./snippets/ml-algorithms.code-snippets"
+      },
+      {
+        "language": "julia",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "julia",
+        "path": "./snippets/ads.code-snippets"
+      }
+    ]
+  }
+}
